@@ -2,41 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Environmental Education Design System */
 
 @layer base {
   :root {
+    /* Base Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 160 25% 15%;
 
+    /* Nature Palette */
+    --nature-green: 145 60% 45%;
+    --nature-green-light: 145 50% 65%;
+    --nature-green-dark: 145 70% 25%;
+    --nature-blue: 200 80% 50%;
+    --nature-blue-light: 200 70% 70%;
+    --nature-blue-dark: 200 90% 30%;
+    --earth-brown: 25 40% 40%;
+    --earth-beige: 45 30% 85%;
+
+    /* Semantic Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 160 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 160 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 145 60% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 200 80% 50%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 30% 85%;
+    --muted-foreground: 160 25% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 145 50% 65%;
+    --accent-foreground: 160 25% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 145 20% 90%;
+    --input: 145 20% 95%;
+    --ring: 145 60% 45%;
 
-    --radius: 0.5rem;
+    /* Timeline Colors */
+    --timeline-bg: 145 30% 90%;
+    --timeline-active: 145 60% 45%;
+    --timeline-complete: 145 80% 35%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(200 80% 50% / 0.1), hsl(145 60% 45% / 0.1));
+    --gradient-nature: linear-gradient(180deg, hsl(145 60% 45%), hsl(200 80% 50%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(45 30% 98%));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(145 60% 45% / 0.08);
+    --shadow-card: 0 8px 30px hsl(145 60% 45% / 0.12);
+    --shadow-timeline: 0 2px 10px hsl(145 60% 45% / 0.15);
+
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +129,130 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+}
+
+@layer components {
+  /* Timeline Styles */
+  .timeline-container {
+    @apply relative w-full;
+  }
+
+  .timeline-line {
+    @apply absolute left-1/2 transform -translate-x-1/2 w-1 bg-[hsl(var(--timeline-bg))] rounded-full;
+    box-shadow: var(--shadow-timeline);
+  }
+
+  .timeline-progress {
+    @apply absolute top-0 left-0 w-full bg-gradient-to-b from-[hsl(var(--timeline-active))] to-[hsl(var(--timeline-complete))] rounded-full;
+    transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .timeline-item {
+    @apply relative flex items-center mb-24 opacity-0 translate-y-8;
+    transition: var(--transition-spring);
+  }
+
+  .timeline-item.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .timeline-item.left {
+    @apply flex-row-reverse;
+  }
+
+  .timeline-dot {
+    @apply absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-[hsl(var(--timeline-bg))] rounded-full z-10;
+    box-shadow: var(--shadow-timeline);
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-dot.active {
+    @apply border-[hsl(var(--timeline-active))] scale-125;
+  }
+
+  .timeline-content {
+    @apply w-5/12 p-8 bg-white rounded-2xl;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-spring);
+  }
+
+  .timeline-content:hover {
+    @apply transform -translate-y-1;
+    box-shadow: var(--shadow-card), 0 12px 40px hsl(145 60% 45% / 0.15);
+  }
+
+  /* Hero Styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .nature-gradient {
+    background: var(--gradient-nature);
+  }
+
+  /* Completion Goal */
+  .completion-goal {
+    @apply w-20 h-20 bg-white rounded-full border-8 border-[hsl(var(--timeline-bg))] flex items-center justify-center;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-spring);
+  }
+
+  .completion-goal.completed {
+    @apply border-[hsl(var(--timeline-complete))] scale-110;
+    background: linear-gradient(135deg, hsl(var(--nature-green)), hsl(var(--nature-blue)));
+  }
+
+  .completion-icon {
+    @apply text-2xl transition-all duration-500;
+  }
+
+  .completion-icon.completed {
+    @apply text-white animate-bounce;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .timeline-content {
+      @apply w-11/12 mx-auto p-6;
+    }
+    
+    .timeline-item {
+      @apply flex-col mb-16;
+    }
+    
+    .timeline-item.left {
+      @apply flex-col;
+    }
+    
+    .timeline-dot {
+      @apply relative left-0 transform-none mb-4;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
 }
