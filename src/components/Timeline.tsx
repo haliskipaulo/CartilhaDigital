@@ -128,7 +128,7 @@ const Timeline: React.FC<TimelineProps> = ({ data = defaultTimelineData }) => {
         {/* Timeline Line */}
         <div 
           className="timeline-line"
-          style={{ height: '100%' }}
+          style={{ height: 'calc(100% - 120px)' }}
         >
           <div 
             className="timeline-progress"
@@ -152,7 +152,7 @@ const Timeline: React.FC<TimelineProps> = ({ data = defaultTimelineData }) => {
                 visibleItems.has(item.id) ? 'active' : ''
               }`}
             >
-              <div className="text-nature-green">
+              <div className="text-nature-green w-5 h-5">
                 {item.icon}
               </div>
             </div>

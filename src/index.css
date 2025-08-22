@@ -164,7 +164,7 @@
   }
 
   .timeline-dot {
-    @apply absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-[hsl(var(--timeline-bg))] rounded-full z-10;
+    @apply absolute left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-4 border-[hsl(var(--timeline-bg))] rounded-full z-10 flex items-center justify-center;
     box-shadow: var(--shadow-timeline);
     transition: var(--transition-smooth);
   }
