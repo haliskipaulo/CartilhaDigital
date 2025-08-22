@@ -81,13 +81,20 @@ const Timeline: React.FC<TimelineProps> = ({ data = defaultTimelineData }) => {
       const timelineTop = timelineRect.top;
       const timelineHeight = timelineRect.height;
 
-      // Calculate scroll progress relative to timeline
+      // Calculate scroll progress relative to completion goal
       let progress = 0;
-      if (timelineTop < windowHeight) {
-        progress = Math.min(
-          (windowHeight - timelineTop) / (timelineHeight + windowHeight),
-          1
-        );
+      if (completionRef.current && timelineTop < windowHeight) {
+        const completionRect = completionRef.current.getBoundingClientRect();
+        const completionTop = completionRect.top;
+        
+        // Calculate progress based on completion goal position
+        if (completionTop <= windowHeight * 0.8) {
+          progress = 1;
+        } else {
+          const totalScrollDistance = timelineHeight - (windowHeight * 0.2);
+          const currentScroll = windowHeight - timelineTop;
+          progress = Math.min(currentScroll / totalScrollDistance, 1);
+        }
       }
 
       setScrollProgress(progress);
