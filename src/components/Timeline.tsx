@@ -193,6 +193,10 @@ const Timeline: React.FC<TimelineProps> = ({ data = defaultTimelineData }) => {
               Você completou esta jornada de aprendizado sobre preservação ambiental. 
               Agora é hora de colocar esse conhecimento em prática!
             </p>
+
+            <a
+                href="/quiz" className="inline-block bg-nature-green text-white px-6 py-3 rounded-xl text-lg font-semibold shadow-md hover:bg-green-700 transition" >🌱 Teste seus conhecimentos
+            </a>
           </div>
         )}
       </div>
