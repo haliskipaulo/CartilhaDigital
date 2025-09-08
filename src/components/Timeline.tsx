@@ -6,9 +6,13 @@ import { Check, TreePine, Fish, Bird, PawPrint, Globe, BookOpen, Users } from "l
 import goioximImg from '@/assets/1.png';      // Cágado-rajado
 import apolloImg from '@/assets/2.png';       // Onça-pintada
 import miaImg from '@/assets/3.png';          // Capivara
-import richardImg from '@/assets/4.png';    // Tatu-galinha
+import richardImg from '@/assets/4.png';      // Tatu-galinha
 import yaraImg from '@/assets/5.png';         // Mandi (Peixe)
-import condaImg from '@/assets/6.png';        // Harpia
+import KameEKairumg from '@/assets/6.png';    // Bugio-Preto
+import conda from '@/assets/7.png';           // harpia
+import guiro from '@/assets/8.png';           // lobo guara
+import anahi from '@/assets/9.png';           // lontra
+import rubi  from '@/assets/10.png';          // arara vermelha
 
 // --- INTERFACE ---
 // A interface agora tem a propriedade 'character' opcional
@@ -31,7 +35,7 @@ export interface TimelineItem {
 const defaultTimelineData: TimelineItem[] = [
     { id: '1', title: 'O Desafio do Rio Iguaçu', content: 'O Rio Iguaçu é o maior do Paraná, mas enfrenta um grave problema: é o segundo rio mais poluído do Brasil. Na região de Curitiba, sua qualidade foi classificada como "Ruim".', icon: <Globe className="w-full h-full" />, side: 'right' },
     
-    { id: '2', title: 'Condá', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Condá', popularName: 'Harpia', uicnClassification: 'Criticamente em perigo', image: condaImg } },
+    { id: '2', title: 'Kamé e Kairu', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Kamé e Kairu', popularName: 'Bugio-Preto', uicnClassification: 'Criticamente em perigo', image: KameEKairumg } },
 
     { id: '3', title: 'A Missão do Bioclube', content: 'Estudantes do Colégio Estadual Lúcia Bastos, em Curitiba, formaram o Bioclube para investigar e conscientizar a comunidade sobre a importância do rio.', icon: <Users className="w-full h-full" />, side: 'right' },
     
@@ -48,6 +52,14 @@ const defaultTimelineData: TimelineItem[] = [
     { id: '9', title: 'Richard', icon: <PawPrint className="w-full h-full" />, side: 'right', character: { name: 'Richard', popularName: 'Tatu-galinha', uicnClassification: 'Pouco preocupante', image: richardImg } },
 
     { id: '10', title: 'Yara', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Yara', popularName: 'Mandi', uicnClassification: 'Pouco preocupante', image: yaraImg } },
+
+    { id: '11', title: 'Conda', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Conda', popularName: 'Harpia', uicnClassification: 'Criticamente em perigo', image: conda } },
+
+    { id: '12', title: 'Guiro', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Guiro', popularName: 'Lobo Guará', uicnClassification: 'Quase Ameaçado', image: guiro } },
+
+    { id: '13', title: 'Anahi', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Anahi', popularName: 'Lontra', uicnClassification: 'Vulnerável', image: anahi } },
+
+    { id: '14', title: 'Rubi', icon: <PawPrint className="w-full h-full" />, side: 'left', character: { name: 'Rubi', popularName: 'Arara-Vermelha', uicnClassification: 'Em perigo', image: rubi } },
 ];
 
 
