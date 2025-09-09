@@ -4,7 +4,7 @@ import heroImage from "@/assets/hero-environment.jpg";
 
 const Hero = () => {
   const scrollToContent = () => {
-    const contentElement = document.getElementById('timeline-content');
+    const contentElement = document.getElementById('characters');
     contentElement?.scrollIntoView({ behavior: 'smooth' });
   };
 
