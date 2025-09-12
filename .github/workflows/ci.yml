@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]   # LTS
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # Safety: install without running lifecycle scripts first
+      - name: Clean install (no scripts)
+        run: |
+          npm ci --ignore-scripts
+
+      # Optional: quick grep to ensure none of the known-bad packages/versions are present
+      - name: Supply-chain sanity check
+        run: |
+          set -e
+          if [ -f package-lock.json ]; then
+            BAD_PKGS='chalk|debug|ansi-styles|strip-ansi|ansi-regex|wrap-ansi|slice-ansi|supports-color|color(|-convert|-string)?|color-name|is-arrayish|simple-swizzle|supports-hyperlinks|chalk-template|backslash'
+            grep -E "\"($BAD_PKGS)\"" package-lock.json -n || true
+          fi
+
+      - name: Run tests
+        env:
+          CI: true
+        run: |
+          npm run test
+
