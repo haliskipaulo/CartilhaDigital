@@ -1,11 +1,31 @@
 import { Button } from "@/components/ui/button";
-import { Leaf, Waves, Heart } from "lucide-react";
+import { Leaf, Waves, Heart, VolumeX, Music } from "lucide-react";
+import { useState, useRef } from "react";
 import heroImage from "@/assets/hero-environment.jpg";
+import musicFile from "@/assets/MusicaCartilha.wav";
 
 const Hero = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  
   const scrollToContent = () => {
     const contentElement = document.getElementById('characters');
     contentElement?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const toggleMusic = () => {
+    if (!audioRef.current) {
+      audioRef.current = new Audio(musicFile);
+      audioRef.current.loop = true;
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
   };
 
   return (
@@ -18,6 +38,21 @@ const Hero = () => {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
+      </div>
+
+      {/* Music Control Button */}
+      <div className="fixed top-6 right-6 z-50">
+        <Button
+          onClick={toggleMusic}
+          size="lg"
+          className={`${
+            isPlaying 
+              ? 'bg-nature-green hover:bg-nature-green-dark'
+              : 'bg-red-500 hover:bg-red-600' 
+          } text-white rounded-full p-4 shadow-lg transition-all duration-300 transform hover:scale-105`}
+        >
+          {isPlaying ? <Music className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}
+        </Button>
       </div>
 
       {/* Floating Elements */}
