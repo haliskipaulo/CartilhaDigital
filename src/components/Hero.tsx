@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Leaf, Waves, Heart, VolumeX, Music } from "lucide-react";
 import { useState, useRef } from "react";
-import heroImage from "@/assets/hero-environment.jpg";
+import heroImage from "@/assets/capa.png";
 import musicFile from "@/assets/MusicaCartilha.wav";
 
 const Hero = () => {
@@ -31,11 +31,11 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 ">
         <img 
           src={heroImage} 
           alt="Beautiful natural environment with forest and river" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-bottom"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40"></div>
       </div>
@@ -69,13 +69,19 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <div className="animate-fade-in-up">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+           style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+           >            
             Valorização e Conservação do <span className="text-nature-green-light">Rio Iguaçu</span>
           </h1>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-8">
+          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-8"
+          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+          >
             O Projeto do Bioclube do Colégio Estadual Lúcia Bastos
           </h2>
-          <p className="text-xl md:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p className="text-xl md:text-2xl text-gray-100 mb-12 max-w-3xl mx-auto leading-relaxed font-medium"
+          style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}
+          >
              Conheça a jornada de estudantes na criação de uma cartilha para conscientizar 
              a comunidade sobre o rio mais importante do Paraná.
           </p>
